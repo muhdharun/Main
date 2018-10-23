@@ -1,6 +1,8 @@
 package seedu.addressbook.commands;
 
 
+import seedu.addressbook.password.Password;
+
 /**
  * Shows help instructions.
  */
@@ -14,15 +16,37 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_ALL_USAGES = AddCommand.MESSAGE_USAGE
             + "\n" + DeleteCommand.MESSAGE_USAGE
             + "\n" + ClearCommand.MESSAGE_USAGE
+            + "\n" + EditCommand.MESSAGE_USAGE
+            + "\n" + CheckCommand.MESSAGE_USAGE
             + "\n" + FindCommand.MESSAGE_USAGE
+            + "\n" + InboxCommand.MESSAGE_USAGE
             + "\n" + ListCommand.MESSAGE_USAGE
-            + "\n" + ViewCommand.MESSAGE_USAGE
             + "\n" + ViewAllCommand.MESSAGE_USAGE
+            + "\n" + UpdatePasswordCommand.MESSAGE_USAGE
             + "\n" + HelpCommand.MESSAGE_USAGE
+            + "\n" + LockCommand.MESSAGE_USAGE
             + "\n" + ExitCommand.MESSAGE_USAGE;
 
+    public static final String MESSAGE_PO_USAGES = FindCommand.MESSAGE_USAGE
+            + "\n" + ListCommand.MESSAGE_USAGE
+            + "\n" + ViewAllCommand.MESSAGE_USAGE
+            + "\n" + HelpCommand.MESSAGE_USAGE
+            + "\n" + InboxCommand.MESSAGE_USAGE
+            + "\n" + LockCommand.MESSAGE_USAGE
+            + "\n" + ExitCommand.MESSAGE_USAGE;
+
+
+    //@@author iamputradanish
     @Override
     public CommandResult execute() {
-        return new CommandResult(MESSAGE_ALL_USAGES);
+        Password password = new Password();
+        boolean isHQPFlag = password.isHQPUser();
+
+        if(isHQPFlag) {
+            return new CommandResult(MESSAGE_ALL_USAGES);
+        }
+        else{
+            return new CommandResult(MESSAGE_PO_USAGES);
+        }
     }
 }

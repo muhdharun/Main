@@ -1,6 +1,7 @@
 package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
+import seedu.addressbook.data.person.NRIC;;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 
@@ -11,27 +12,31 @@ import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
-
+    //@@author muhdharun -reused
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" 
-            + "Deletes the person identified by the index number used in the last person listing.\n\t"
-            + "Parameters: INDEX\n\t"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Deletes the person by nric.\n\t"
+            + "Parameters: NRIC\n\t"
+            + "Example: " + COMMAND_WORD + " s1234567a";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    private NRIC toDelete;
 
     public DeleteCommand(int targetVisibleIndex) {
         super(targetVisibleIndex);
+    }
+
+    public DeleteCommand(NRIC nric) {
+        this.toDelete = nric;
     }
 
 
     @Override
     public CommandResult execute() {
         try {
-            final ReadOnlyPerson target = getTargetPerson();
+            final ReadOnlyPerson target = (toDelete == null) ? getTargetPerson() : getTargetPerson(toDelete);
             addressBook.removePerson(target);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
-
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (PersonNotFoundException pnfe) {

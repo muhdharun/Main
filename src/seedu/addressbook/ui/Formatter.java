@@ -38,9 +38,17 @@ public class Formatter {
     public String format(List<? extends ReadOnlyPerson> persons) {
         final List<String> formattedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : persons) {
-            formattedPersons.add(person.getAsTextHidePrivate());
+            formattedPersons.add(person.getAsTextShowAll());
         }
         return format(asIndexedList(formattedPersons));
+    }
+
+    public String formatForTstamps(List<String> timestamps) {
+        final List<String> formattedTimestamps = new ArrayList<>();
+        for (String timestamp : timestamps) {
+            formattedTimestamps.add(timestamp);
+        }
+        return format(asIndexedList(formattedTimestamps));
     }
 
     /** Formats a list of strings as an indexed list. */

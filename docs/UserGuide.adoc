@@ -1,271 +1,281 @@
-Police Database - User Guide
+= Police Database - User Guide
+:site-section: UserGuide
+:toc:
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+endif::[]
+:repoURL: https://github.com/CS2113-AY1819S1-F10-3/main
 
-1. Introduction
+By: `Team F10-3`      Since: `Aug 2018'
 
-The police database is for police officers(PO) and headquarters personnel(HQP). Both groups will have varying access and authorization levels to this database. POs would be able to read from the database after screening someone while on patrol and choose his course of action base on the status/threat level of subject. HQP would have the added functions of adding and removing people from the database. Refer to quick start to get started 
+== Introduction
 
-2. Quick Start 
+The police database is for police officers(PO) and headquarter personnel(HQP). Both groups will have varying access and authorization levels to this database. POs would be able to read from the database after screening someone while on patrol and choose his course of action base on the status/threat level of subject. HQP would have the added functions of adding and removing people from the database. Refer to quick start to get started 
 
-1.	Ensure that you have Java Version 9 installed on your device.
-2.	Download the latest version of EX-SI-53 here.
-3.	Copy the file to the folder you want to use as the home folder for your Address Book.
-4.	Double-click the file to start the app. The user interface should appear in a few seconds.
-5.	Type the command in the command box and press “Enter” to execute it. 
-E.g. Typing ‘undo’ into the command box will restore the address book to its state before the previous undoable command.
-6.	To display the full list of commands and a summary of their functions in the application, type ‘help’ and press “Enter”.
-7.	Refer to Section 3, “Features” for details of each command.
+== Quick Start
 
+.	Ensure that you have Java Version 9 installed on your device.
+.	Download the latest version of EX-SI-53 here.
+.	Copy the file to the folder you want to use as the home folder for your Address Book.
+.	Double-click the file to start the app. The user interface should appear in a few seconds.
++
+image::Ui.png[width="790"]
++
+.	Type the command in the command box and press kbd:[Enter] to execute it.
+.	To display the full list of commands and a summary of their functions in the application, type ‘help’ and press “Enter”.
+.	Refer to Section 3, “Features” for details of each command.
 
+[[Features]]
+== Features
 
-3. Features
+====
+*Command Format*
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`
+* Items in the WANTEDFOR parameter must be given if STATUS is "wanted"
+* * Items in square brackets are optional e.g `n/NAME [p/POSTALCODE] [s/STATUS]' can be used as 'n/John Doe p/510246 s/xc' or 'n/John Doe s/xc'
+* Items with `…`​ after them can be used multiple times including zero times e.g. `o/OFFENSE...` can be used as `{nbsp}` (i.e. 0 times), `o/theft`, `o/riot o/drugs` etc
+====
 	
-3.1. help
-Format: help
+=== Viewing help : `help`
 
-●	Lists all the features in a user friendly format for users and how to use them
+Format: 'help'
 
-3.2. Adding a new person: add
-Adds a criminal to the database- only by Admin.
-Format: add i/NRIC n/NAME p/PHONE_NUMBER d/DATE_OF_BIRTH s/STATUS a/ADDRESS 
-Examples:
-●	add i/G1978411Q n/John Doe p/98765432 d/03-April-1972 s/Wanted a/John street, block 123, #01-01
-3.3. Editing a person : edit
-Edits an existing person in the address book.
-Format: edit NRIC [n/NAME] [p/PHONE] [d/DATE_OF_BIRTH] [s/STATUS] [a/ADDRESS] 
-●	Edits the person with the specified NRIC.
-●	At least one of the optional fields must be provided.
-●	Existing values will be updated to the input values.
-Examples:
-●	edit G1952866Q p/91234567
-●	Edits the phone number of the person with the specified NRIC to be 91234567
-3.4. Deleting a person : delete
-Deletes the specified person from the database- only by Admin.
-Format: delete NRIC
-●	Deletes the person with the specifies NRIC.
-●	Deleting can be only done by an Administrator.
-Examples:
-●	delete G1952866Q
-●	Deletes the person with the specified NRIC from the database.
+*	Lists all the features in a user friendly format for users and how to use them
 
+image::HelpCommand.png[width="790"]
 
-3.5. Requesting for assistance : RA (ambulance) or RB (Backup)
-Format: RA (to call for ambulance) or RB (to call for backup)
+=== Adding a person: `add`
+Adds a criminal to the database - only by HQP.
 
-●	Generates GPS coordinates of current location and sends it to HQ. 
-●	Depending on type of assistance requested, either an ambulance or another patrol resource will be dispatched to said location
-
-
-
-	3.6. Undo command: undo
-	It erases the last change done to the document reverting it to an older state.
-Only works if previous command exists, commands that can be undo are add and delete. 
-
-Format: undo
+Format: 'add NAME n/NRIC d/DATEOFBIRTH p/POSTALCODE s/STATUS w/WANTEDFOR o/PASTOFFENSES'
 
 Examples:
-●	add i/G1978411Q n/John Doe p/98765432 d/03-April-1972 s/Wanted a/John street, block 123, #01-01
-●	undo
-		Deletes John Doe from the database
-
-●	undo
-●	Output: ‘It looks like you haven’t entered any previous command, please enter one.’
-	
-●	help
-●	Output: ‘Your previous command cannot be undone’
-
-	
 
 
+*	add John Doe n/f1234567p d/1996 p/510246 s/xc w/none o/theft o/drugs"
+*   Displays a message stating the new person being added
+
+image::AddCommand.png[width="790"]
+
+[NOTE]
+====
+*   If a person's STATUS is "wanted", the WANTEDFOR parameter has to be filled
+*   No two persons can have the same NRICs, the other parameters such as NAME, POSTALCODE, etc, can be the same
+====
+
+[TIP]
+A person can have more than 0 past offenses
+
+=== Editing a person : `edit`
+
+Edit a specified parameter of an existing person in the address book - only by HQP
+
+Format: 'edit NRIC n/[NAME] p/[POSTAL_CODE] s/[STATUS] w/WANTED_FOR o/PAST_OFFENCES'
+
+****
+*	Edits the person with the specified NRIC.
+*	At least one of the optional fields must be provided.
+*	Existing values will be updated to the input values.
+****
+
+Examples:
+
+*	edit g1952866Q p/510246
+*	Edits the postal code of the person with the specified NRIC to be 510246
+
+=== Display a list of all persons : `list`
+
+Shows a list of every person in the records
+
+Format: 'list'
+
+Examples:
+
+*	list
+*	displays list of all persons
+
+image::ListCommand.png[width="790"]
+
+=== Find a person by NRIC : `find`
+
+Finds a person in the records by the specified NRIC
+
+Format: 'find NRIC'
+
+Examples:
+
+*	find s1234567a
+*	Returns person with 's1234567a'
 
 
-3.7. Repeat command: redo
-	Repeats the previous command, commands include help, battery check, serial number check, battery check, date time, inbox, list. 
+[NOTE]
+====
+*   A timestamp and current ID is stored whenever this command is used
+====
 
-	Format: redo
-	
-	Examples:
-●	RA
-●	redo
-		Requests another ambulance
+=== Get screening history of a person: `check`
 
-●	redo
-●	Output: ‘It looks like you haven’t entered any previous command, please enter one.’
-	
-●	add i/G1978411Q n/John Doe p/98765432 d/03-April-1972 s/Wanted a/John street, block 123, #01-01
-●	Output: ‘Your previous command cannot be repeated. Please access the help page for a list of repeatable command’
+Displays all the times a person was screened in the form of timestamps (using 'find' command) - Only by HQP
 
-	
+Format: 'check s1234567a'
+
+*	Returns an indexed list of timestamps for specified person, as well as corresponding PO ID nuber
 
 
+Examples:
+
+*	check s1234567a
+*	Shows an indexed list of timestamps for when person with s1234567a was screened by any POs
+
+image::CheckCommand.png[width="790"]
+
+=== Deleting a person : `delete`
+
+Deletes the specified person from the database- only by HQP.
+
+Format: 'delete NRIC'
+
+*	Deletes the person with the specifies NRIC.
+
+Examples:
+
+*	delete G1952866Q
+*	Deletes the person with the specified NRIC from the records.
+
+=== Clear records : `clear`
+
+Clears the records of persons- only by HQP
+
+Format: 'clear'
+
+Example:
+
+*	clear
+*	Records will now be empty
+
+=== Requesting for assistance : `request`
+
+Generates GPS coordinates of current location and sends it to HQ. Depending on type of assistance requested, either an ambulance or another patrol resource will be dispatched to said location
+
+Format: 'request'
+
+Examples:
+
+*	request
+*   Returns a set of GPS coordinates to HQ
+
+=== Dispatch a PO : `dispatch`
+
+Dispatches a specified PO
+
+Format: 'dispatch PO(ID)'
+
+Examples:
+
+*	dispatch PO2
+*	PO2 will receive a dispatch message
+
+=== Lock System : `lock`
+
+Locks the system and unlocks with password input
+
+Format: 'lock'
+
+Examples:
+
+*	lock
+*	Any user must enter their respective password to unlock
+
+=== Update Password : `update password`
+
+Updates password of user - only HQP can change the user's password
+
+Format: 'update password'
+
+Examples:
+
+*	update password
+*	Please select a password to change
+*   User then has to enter old and new alphanumeric password
+
+=== Check notifications: `inbox`
+
+For HQPs: Check inbox to see a list of dispatch requests made by POs, and are sorted based on severity first, and then time stamp.
+For POs: Check inbox to see who is responding to request for backup/ambulance/fire truck or to see if have any dispatch orders
+
+Format: 'inbox'
 
 
+Examples (as a HQP):
 
+*	'inbox'
+*	Shows a list of dispatch requests (sorted by severity then timestamp) made by POs on the ground:
 
+Examples (as a PO):
+*	'inbox'
+*	Shows any dispatch messages by HQ or response for backup if any
 
+=== Exit program : `shutdown`
 
+Shutdown the system
 
+Format: 'shutdown'
 
+Examples:
+* shutdown
+* Police Records shuts down
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3.8. Check notifications: inbox
-	For HQPs: Check inbox to see a list of dispatch requests made by POs, and are sorted based on severity first, and then time stamp.
-	For POs: Check inbox to see who is responding to request for backup/ambulance/fire truck or to see if have any dispatch orders
-	
-	Format: inbox
-
-	Examples (as a HQP):
-●	inbox
-●	Output: Shows a list of dispatch requests (sorted by severity then timestamp) made by POs on the ground:
-○	PO1: Gunman, (location in form of GPS coordinates) , 1030 hrs
-○	PO3: Gunman, (location in form of GPS coordinates), 1033 hrs
-○	PO4: Ambulance, car accident, (location in form of GPS coordinates) , 1028 hrs
-○	PO5: Firetruck, small fire, (location in form of GPS coordinates) , 1048 hrs
-Examples (as a PO requesting for assistance):
-●	inbox
-●	Output - for less serious cases - shows who is responding :
-○	 PO3 is dispatched and on the way
-●	Output (for severe cases):
-○	SWAT team is dispatched and on the way
-	Examples (as a PO that is dispatched by HQ):
-●	inbox
-●	Output:
-○	Dispatch message: Case of dispute, [location in form of GPS coordinates]
-
-
-
-3.9. Dispatch resource: dispatch (HQ Only)
-	HQ is able to dispatch officers to assign them to tasks. Only free officers are able to be dispatched. A warning would presented to HQ when they try to assign an occupied officer.
-
-	Format: dispatch [insert patrol number]
-
-	Example:
-●	dispatch PO2
-
-Output: Dispatch message sent to PO2
-	
-
-
-
-
-
-
-
-4. Commands List
+== Commands List
  
-●	Help 
-Format - help
+*	*Help* : 'help'
 
-●	Add 
-Format - add i/[NRIC] n/[NAME] p/[PHONE_NUMBER] d/[DATE_OF_BIRTH] s/[STATUS] a/[ADDRESS]
+*	*Add*  : 'add n/NAME n/NRIC d/DATE_OF_BIRTH p/POSTAL_CODE s/STATUS w/WANTED_FOR o/PAST OFFENCES...'
 
-E.g. add i/G1978411Q n/John Doe p/98765432 d/03-April-1972 s/Wanted a/John street, block 123, #01-01
+E.g. add John Doe n/s1234567a d/1996 p/510246 s/xc w/none o/theft o/drugs
+E.g. add Bob n/g1234567a d/1996 p/111111 s/clear w/none
 
-●	Edit
-Format- edit NRIC [n/NAME] [p/PHONE] [d/DATE_OF_BIRTH] [s/STATUS] [a/ADDRESS] 
+*	*Edit* : 'edit NRIC n/[NAME] p/[POSTAL_CODE] s/[STATUS] w/WANTED_FOR o/PAST_OFFENCES'
 
-E.g. edit G1952866Q p/91234567
+E.g. edit g1952866q p/510246
 
-●	Delete 
-Format- delete NRIC
+*	*List* : 'list'
 
-E.g. delete G1952866Q
+*	*Find* : 'find NRIC'
 
-	
-●	Repeat
-Performs previous run command 
+E.g. find s1234567a
 
-Format - redo 
+*	*Check* : 'check NRIC'
 
-E.g. redo
+E.g. check s1234567a
 
-●	Undo
-Format - undo
+*	*Delete* : 'delete NRIC'
 
-E.g. undo
+E.g. delete g1952866q
 
+*	*Clear* : 'clear'
 
+*	*Request for assistance* : 'RA' (Ambulance) or 'RF' (Fire Brigade) or 'RB' (Backup)
 
+*	*Dispatch* : 'dispatch PO(ID)'
 
+E.g. dispatch PO2
 
+*	*Lock* : 'lock'
 
-●	RA (Ambulance) or RF(Fire Brigade) or RB (Backup)
-RA Calls for ambulance, RF calls for Fire Brigade while RB calls for backup to current location
+*	*Update Password* : 'update password'
 
-Format: RA or RB or RF
+*	*Check notifications* : 'inbox'
 
-E.g: RB  
+*	*Exit* : 'shutdown'
 
-
-
-
-●	Battery Check
-Checks the battery percentage left currently
-
-Format: battery check
-
-E.g. battery check
-
-●	Serial Number Check 
-Checks the serial number of device against database
-
-Format: *#06# p/[PHONE_NUMBER]
-
-E.g. *#06# p/86781234
-
-●	Vehicle Number Check 
-Checks the serial number of device against database
-
-Format: *#06# v/[VEHICLE_NUMBER]
-
-E.g. *#06# v/SGP0884S
-
-
-●	Date and Time Check
-Returns the date and time currently
-
-Format: date time
-
-E.g. date time
-
-●	Lock System : lock
-Locks the system and unlocks only with password
-
-Format: lock
-
-E.g. lock
-
-
-●	Check notifications: inbox
-Checks for list of dispatch requests (for HQP), status of request (for requesting POs) or dispatch messages (for free POs or POs not engaged with anything)
-
-Format: inbox
-
-E.g inbox
-
-
-
-●	Dispatch resource: dispatch (HQ Only)
-Dispatches resources (PO)
-
-Format: dispatch PO[id] 
-
-E.g. dispatch PO1 
 	
 
 

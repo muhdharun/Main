@@ -1,17 +1,33 @@
 package seedu.addressbook.data;
 
+import seedu.addressbook.data.person.NRIC;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
+import seedu.addressbook.password.Password;
+import seedu.addressbook.readandwrite.ReaderAndWriter;
+import seedu.addressbook.timeanddate.TimeAndDate;
+
+import java.io.*;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
  */
 public class AddressBook {
 
+    private static final String SCREENING_DATABASE = "ScreeningHistory.txt";
+    private String tempNric;
+    private String tempTimestamp;
+    private int counter = 0;
+
     private final UniquePersonList allPersons;
+    private ReaderAndWriter readerAndWriter = new ReaderAndWriter();
+    private File databaseFile = readerAndWriter.fileToUse(SCREENING_DATABASE);
 
     public static AddressBook empty() {
         return new AddressBook();
@@ -38,16 +54,75 @@ public class AddressBook {
      *
      * @throws DuplicatePersonException if an equivalent person already exists.
      */
-    public void addPerson(Person toAdd) throws DuplicatePersonException {
+    public void addPerson(Person toAdd) throws UniquePersonList.DuplicateNricException {
         allPersons.add(toAdd);
     }
+//@@author muhdharun
+    public void addPersonToDbAndUpdate(ReadOnlyPerson toAdd) {
+        TimeAndDate timeAndDate = new TimeAndDate();
+        tempNric = toAdd.getNric().getIdentificationNumber();
+        tempTimestamp = timeAndDate.outputDATHrs();
+    }
 
+    public List<String> readDatabase(String nric) throws IOException {
+        List<String> data = new ArrayList<>();
+        String line;
+        BufferedReader br = readerAndWriter.openReader(databaseFile);
+        line = br.readLine();
+        while (line != null){
+            String[] parts = line.split(" ");
+
+            if (parts[0].equals(nric)){
+                if(parts[2].equals("null")){
+                    continue;
+                }
+                data.add(parts[1] + " by " + parts[2]);
+                line = br.readLine();
+            }
+            else{
+                line = br.readLine();
+            }
+        }
+        br.close();
+        return data;
+    }
+
+    public void updateDatabase() throws IOException {
+        String line;
+        BufferedReader br = readerAndWriter.openReader(databaseFile);
+        FileWriter write = new FileWriter(SCREENING_DATABASE,true);
+        PrintWriter myPrinter = new PrintWriter(write);
+        try {
+            while ((line = br.readLine()) !=  null){
+                String[] parts = line.split(" ");
+                if (parts[0].equals(tempNric)){
+                    myPrinter.println(tempNric + " " + tempTimestamp + " " + Password.getID());
+                    myPrinter.close();
+                    br.close();
+                    return;
+                }
+                line = br.readLine();
+                continue;
+            }
+            myPrinter.println(tempNric + " " + tempTimestamp + " " + Password.getID());
+            myPrinter.close();
+            br.close();
+        }
+        catch (Exception e){
+            myPrinter.print(tempNric + " " + tempTimestamp + " " + Password.getID());
+
+            myPrinter.close();
+            br.close();
+        }
+    }
+//@@author
     /**
      * Checks if an equivalent person exists in the address book.
      */
     public boolean containsPerson(ReadOnlyPerson key) {
         return allPersons.contains(key);
     }
+
 
     /**
      * Removes the equivalent person from the address book.
@@ -57,6 +132,17 @@ public class AddressBook {
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
     }
+
+    /**
+     * Edits the equivalent person from the address book with new data fields.
+     *
+     * @throws PersonNotFoundException if no such Person could be found.
+     * @throws DuplicatePersonException if an equivalent person already exists.
+     */
+//    public void editPerson(ReadOnlyPerson toDelete, Person toAdd) throws PersonNotFoundException, DuplicatePersonException {
+//        removePerson(toDelete);
+//        addPerson(toAdd);
+//    }
 
     /**
      * Clears all persons from the address book.
