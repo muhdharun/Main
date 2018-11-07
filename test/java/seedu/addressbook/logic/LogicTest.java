@@ -280,6 +280,9 @@ public class LogicTest {
         AddressBook expectedAB = new AddressBook();
         expectedAB.addPerson(toBeAdded);
 
+        AddCommand toAdd = new AddCommand(toBeAdded);
+        assertEquals(toBeAdded,toAdd.getPerson());
+
         // execute command and verify result
         assertCommandBehavior(helper.generateAddCommand(toBeAdded),
                               String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
