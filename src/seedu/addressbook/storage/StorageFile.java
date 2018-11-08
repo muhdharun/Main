@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.*;
+
 
 /**
  * Represents the file used to store address book data.
@@ -111,7 +113,7 @@ public class StorageFile {
      *
      * @throws StorageOperationException if there were errors reading and/or converting data from file.
      */
-    public AddressBook load() throws StorageOperationException {
+    public AddressBook load() throws StorageOperationException, IllegalValueException {
         try (final Reader fileReader =
                      new BufferedReader(new FileReader(path.toFile()))) {
 
@@ -130,10 +132,17 @@ public class StorageFile {
 
         // create empty file if not found
         } catch (FileNotFoundException fnfe) {
+
             //UniquePersonList data = populatePoliceRecords();
-            final AddressBook empty = new AddressBook();
-            save(empty);
-            return empty;
+//             final AddressBook empty = new AddressBook();
+//             save(empty);
+//             return empty;
+
+            //final AddressBook empty = new AddressBook();
+            final AddressBook populated = populatedPoliceRecords();
+            save(populated);
+            return populated;
+
 
         // other errors
         } catch (IOException ioe) {
@@ -149,16 +158,38 @@ public class StorageFile {
         return path.toString();
     }
 
-    public UniquePersonList populatePoliceRecords() throws IllegalValueException {
-        Person person1 = new Person(new Name("John Doe"), new NRIC("s1234567a"), new DateOfBirth("1990"), new PostalCode("111111"), new Status("xc"),
-                new Offense(), Collections.singleton(new Offense("riot")));
-        Person person2 = new Person(new Name("Doe John"), new NRIC("s7654321a"), new DateOfBirth("1976"), new PostalCode("222222"), new Status("xc"),
-                new Offense(), Collections.singleton(new Offense("theft")));
-        Person person3 = new Person(new Name("Syed Harith Zaki"), new NRIC("s9612485j"), new DateOfBirth("1996"), new PostalCode("666666"), new Status("wanted"),
-                new Offense(), Collections.singleton(new Offense("fleeing suspect")));
-        Person person4 = new Person(new Name("Mas Selamat"), new NRIC("g7511111p"), new DateOfBirth("1975"), new PostalCode("507709"), new Status("wanted"),
-                new Offense(), Collections.singleton(new Offense("fleeing suspect")));
-        return new UniquePersonList(person1,person2,person3,person4);
+
+//     public UniquePersonList populatePoliceRecords() throws IllegalValueException {
+//         Person person1 = new Person(new Name("John Doe"), new NRIC("s1234567a"), new DateOfBirth("1990"), new PostalCode("111111"), new Status("xc"),
+//                 new Offense(), Collections.singleton(new Offense("riot")));
+//         Person person2 = new Person(new Name("Doe John"), new NRIC("s7654321a"), new DateOfBirth("1976"), new PostalCode("222222"), new Status("xc"),
+//                 new Offense(), Collections.singleton(new Offense("theft")));
+//         Person person3 = new Person(new Name("Syed Harith Zaki"), new NRIC("s9612485j"), new DateOfBirth("1996"), new PostalCode("666666"), new Status("wanted"),
+//                 new Offense(), Collections.singleton(new Offense("fleeing suspect")));
+//         Person person4 = new Person(new Name("Mas Selamat"), new NRIC("g7511111p"), new DateOfBirth("1975"), new PostalCode("507709"), new Status("wanted"),
+//                 new Offense(), Collections.singleton(new Offense("fleeing suspect")));
+//         return new UniquePersonList(person1,person2,person3,person4);
+//     }
+
+    //@@iamputradanish
+    public AddressBook populatedPoliceRecords() throws IllegalValueException {
+        return new AddressBook(new UniquePersonList(
+                new Person(
+                        new Name("John Doe"),
+                        new NRIC("s1234567a"),
+                        new DateOfBirth("1996"),
+                        new PostalCode("510246"),
+                        new Status("xc"),
+                        new Offense("none"),
+                        Collections.singleton(new Offense("riot"))),
+                new Person(
+                        new Name("Jane Doe"),
+                        new NRIC("s9611234c"),
+                        new DateOfBirth("1997"),
+                        new PostalCode("510246"),
+                        new Status("xc"),
+                        new Offense("none"),
+                        Collections.singleton(new Offense("riot")))));
     }
 
 }
