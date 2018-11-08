@@ -714,7 +714,7 @@ public class LogicTest {
         helper.addToAddressBook(addressBook, fourPersons);
 
         assertCommandBehavior("find " + nric,
-                Command.getMessageForPersonShownSummary(null),
+                Command.getMessageForPersonShownSummary(expectedPerson),
                 addressBook,
                 false,
                 Collections.emptyList());
