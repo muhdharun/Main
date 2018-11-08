@@ -2,10 +2,10 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2018-11-08T12:23:31.028172300Z</date>
-  <millis>1541679811028</millis>
-  <nanos>172300</nanos>
-  <sequence>212</sequence>
+  <date>2018-11-08T12:33:15.442742900Z</date>
+  <millis>1541680395442</millis>
+  <nanos>742900</nanos>
+  <sequence>398</sequence>
   <logger>seedu.addressbook.parser.Parser</logger>
   <level>INFO</level>
   <class>seedu.addressbook.parser.Parser</class>
@@ -14,10 +14,10 @@
   <message>Parsed the user input and matching commands.</message>
 </record>
 <record>
-  <date>2018-11-08T12:23:31.028172300Z</date>
-  <millis>1541679811028</millis>
-  <nanos>172300</nanos>
-  <sequence>213</sequence>
+  <date>2018-11-08T12:33:15.443742Z</date>
+  <millis>1541680395443</millis>
+  <nanos>742000</nanos>
+  <sequence>399</sequence>
   <logger>seedu.addressbook.parser.Parser</logger>
   <level>WARNING</level>
   <class>seedu.addressbook.parser.Parser</class>
@@ -26,10 +26,10 @@
   <message>NRIC does not exist in argument</message>
 </record>
 <record>
-  <date>2018-11-08T12:23:31.029171900Z</date>
-  <millis>1541679811029</millis>
-  <nanos>171900</nanos>
-  <sequence>214</sequence>
+  <date>2018-11-08T12:33:15.443742Z</date>
+  <millis>1541680395443</millis>
+  <nanos>742000</nanos>
+  <sequence>400</sequence>
   <logger>seedu.addressbook.parser.Parser</logger>
   <level>WARNING</level>
   <class>seedu.addressbook.parser.Parser</class>
