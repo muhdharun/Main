@@ -343,6 +343,7 @@ public class Password {
         else{
             result = passwordValidityChecker(userCommandText);
             if(result.equals(MESSAGE_VALID)){
+            if(result == null){
                 setOTP(userCommandText);
                 setUpdatingFinal();
                 result = MESSAGE_ENTER_NEW_PASSWORD_AGAIN;
@@ -496,6 +497,8 @@ public class Password {
     public String passwordValidityChecker(String newEnteredPassword) throws IOException {
         String result = MESSAGE_VALID;
         if(!passwordExistsChecker(newEnteredPassword).equals(MESSAGE_VALID)){
+        String result = null;
+        if(passwordExistsChecker(newEnteredPassword) != null){
             result = passwordExistsChecker(newEnteredPassword);
         }
         else if(!passwordAlphanumericChecker(newEnteredPassword).equals(MESSAGE_VALID) && !passwordLengthChecker(newEnteredPassword).equals(MESSAGE_VALID)){
@@ -585,6 +588,23 @@ public class Password {
             case PatrolResourceStatus.POLICE_OFFICER_5_ID:
                 result = MESSAGE_PO + MESSAGE_FIVE;
                 break;
+        if(ID.equals(PatrolResourceStatus.HEADQUARTER_PERSONNEL_ID)){
+            result = MESSAGE_HQP;
+        }
+        else if(ID.equals(PatrolResourceStatus.POLICE_OFFICER_1_ID)){
+            result = MESSAGE_PO + MESSAGE_ONE;
+        }
+        else if(ID.equals(PatrolResourceStatus.POLICE_OFFICER_2_ID)){
+            result = MESSAGE_PO + MESSAGE_TWO;
+        }
+        else if(ID.equals(PatrolResourceStatus.POLICE_OFFICER_3_ID)){
+            result = MESSAGE_PO + MESSAGE_THREE;
+        }
+        else if(ID.equals(PatrolResourceStatus.POLICE_OFFICER_4_ID)){
+            result = MESSAGE_PO + MESSAGE_FOUR;
+        }
+        else if(ID.equals(PatrolResourceStatus.POLICE_OFFICER_5_ID)){
+            result = MESSAGE_PO + MESSAGE_FIVE;
         }
 
         return result;
