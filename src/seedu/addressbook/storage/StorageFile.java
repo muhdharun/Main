@@ -134,10 +134,11 @@ public class StorageFile {
         } catch (FileNotFoundException fnfe) {
 
             //UniquePersonList data = populatePoliceRecords();
+
 //            final AddressBook empty = new AddressBook();
 //            save(empty);
 //            return empty;
-
+            
             //final AddressBook empty = new AddressBook();
             final AddressBook populated = populatedPoliceRecords();
             save(populated);
@@ -157,6 +158,7 @@ public class StorageFile {
     public String getPath() {
         return path.toString();
     }
+
 
 
 //    public UniquePersonList populatePoliceRecords() throws IllegalValueException {

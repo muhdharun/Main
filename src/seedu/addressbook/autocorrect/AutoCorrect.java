@@ -68,13 +68,18 @@ public class AutoCorrect {
                 case LogoutCommand.COMMAND_WORD:
                     displayCommand = new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogoutCommand.MESSAGE_USAGE)).feedbackToUser;
                     break;
-
                 case ReadCommand.COMMAND_WORD:
                     displayCommand = new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReadCommand.MESSAGE_USAGE)).feedbackToUser;
                     break;
 
                 case RequestHelpCommand.COMMAND_WORD:
                     displayCommand = new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RequestHelpCommand.MESSAGE_USAGE)).feedbackToUser;
+                case ShutdownCommand.COMMAND_WORD:
+                    displayCommand = new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShutdownCommand.MESSAGE_USAGE)).feedbackToUser;
+                    break;
+
+                case LogoutCommand.COMMAND_WORD:
+                    displayCommand = new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogoutCommand.MESSAGE_USAGE)).feedbackToUser;
                     break;
 
                 case ShowUnreadCommand.COMMAND_WORD:
