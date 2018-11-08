@@ -326,5 +326,6 @@ public class Logic {
     }
 
     private void populatePoliceRecords() throws IllegalValueException {
+
     }
 }
