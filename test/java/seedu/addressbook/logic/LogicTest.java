@@ -1131,9 +1131,9 @@ public class LogicTest {
         int minNumPassword = 5;
         String result = password.passwordValidityChecker(userInput);
         assertEquals(String.format(Password.MESSAGE_PASSWORD_LENGTH, userInput.length())
-                + "\n" + String.format(Password.MESSAGE_PASSWORD_MINIMUM_LENGTH, minNumPassword)
-                + "\n" + Password.MESSAGE_TRY_AGAIN
-        ,result);
+                        + "\n" + String.format(Password.MESSAGE_PASSWORD_MINIMUM_LENGTH, minNumPassword)
+                        + "\n" + Password.MESSAGE_TRY_AGAIN
+                ,result);
         Password.lockIsHQP();
         Password.unprepareUpdatePassword();
     }
@@ -1146,7 +1146,7 @@ public class LogicTest {
         String userInput = "123456";
         String result = password.passwordValidityChecker(userInput);
         assertEquals(String.format(Password.MESSAGE_AT_LEAST_ONE, "alphabet")
-                        + "\n" + Password.MESSAGE_TRY_AGAIN ,result);
+                + "\n" + Password.MESSAGE_TRY_AGAIN ,result);
         Password.lockIsHQP();
         Password.unprepareUpdatePassword();
     }
@@ -1188,109 +1188,6 @@ public class LogicTest {
         String result = password.passwordValidityChecker(userInput);
         assertEquals(Password.MESSAGE_PASSWORD_EXISTS
                         + "\n" + Password.MESSAGE_TRY_AGAIN
-                ,result);
-        Password.lockIsHQP();
-        Password.unprepareUpdatePassword();
-    }
-
-    @Test
-    public void execute_reenterPassword() throws Exception {
-        Password.unlockHQP();
-        Password.prepareUpdatePassword();
-        Password password = new Password();
-        String userInput = "mama123";
-        password.updatePassword("papa123",5);
-        String result = password.updatePassword(userInput,5);
-        assertEquals(Password.MESSAGE_ENTER_NEW_PASSWORD_AGAIN,result);
-        assertTrue(Password.isUpdatePasswordConfirmNow());
-        Password.lockIsHQP();
-        Password.unprepareUpdatePassword();
-        Password.notUpdatingFinal();
-    }
-
-    @Test
-    public void execute_updatePasswordFinal_notSame() throws Exception {
-        Password.unlockHQP();
-        Password.prepareUpdatePassword();
-        Password password = new Password();
-        Password.setOTP("mama123");
-        String result = password.updatePasswordFinal("thisiswrong");
-        assertEquals(Password.MESSAGE_NOT_SAME
-                + "\n" + Password.MESSAGE_TRY_AGAIN, result);
-        assertFalse(isUpdatePasswordConfirmNow());
-        Password.lockIsHQP();
-        Password.unprepareUpdatePassword();
-        Password.notUpdatingFinal();
-    }
-
-    @Test
-
-    @Test
-    public void execute_passwordValidityChecker_tooShort() throws IOException {
-        Password.unlockHQP();
-        Password.prepareUpdatePassword();
-        Password password = new Password();
-        String userInput = "po1";
-        int minNumPassword = 5;
-        String result = password.passwordValidityChecker(userInput);
-        assertEquals(String.format(Password.MESSAGE_PASSWORD_LENGTH, userInput.length())
-                + "\n" + String.format(Password.MESSAGE_PASSWORD_MINIMUM_LENGTH, minNumPassword)
-                       + Password.MESSAGE_TRY_AGAIN
-        ,result);
-        Password.lockIsHQP();
-        Password.unprepareUpdatePassword();
-    }
-
-    @Test
-    public void execute_passwordValidityChecker_missingAlphabet() throws IOException {
-        Password.unlockHQP();
-        Password.prepareUpdatePassword();
-        Password password = new Password();
-        String userInput = "123456";
-        String result = password.passwordValidityChecker(userInput);
-        assertEquals(String.format(Password.MESSAGE_AT_LEAST_ONE, "alphabet")
-                        + Password.MESSAGE_TRY_AGAIN ,result);
-        Password.lockIsHQP();
-        Password.unprepareUpdatePassword();
-    }
-
-    @Test
-    public void execute_passwordValidityChecker_missingNumber() throws IOException {
-        Password.unlockHQP();
-        Password.prepareUpdatePassword();
-        Password password = new Password();
-        String userInput = "popopo";
-        String result = password.passwordValidityChecker(userInput);
-        assertEquals(String.format(Password.MESSAGE_AT_LEAST_ONE, "number")
-                        + Password.MESSAGE_TRY_AGAIN
-                ,result);
-        Password.lockIsHQP();
-        Password.unprepareUpdatePassword();
-    }
-
-    @Test
-    public void execute_passwordValidityChecker_missingNumberAndAlphabet() throws IOException {
-        Password.unlockHQP();
-        Password.prepareUpdatePassword();
-        Password password = new Password();
-        String userInput = "*********";
-        String result = password.passwordValidityChecker(userInput);
-        assertEquals(String.format(Password.MESSAGE_AT_LEAST_ONE, "alphabet and at least one number.")
-                        + Password.MESSAGE_TRY_AGAIN
-                ,result);
-        Password.lockIsHQP();
-        Password.unprepareUpdatePassword();
-    }
-
-    @Test
-    public void execute_passwordValidityChecker_alreadyExists() throws IOException {
-        Password.unlockHQP();
-        Password.prepareUpdatePassword();
-        Password password = new Password();
-        String userInput = "papa123";
-        String result = password.passwordValidityChecker(userInput);
-        assertEquals(Password.MESSAGE_PASSWORD_EXISTS
-                        + Password.MESSAGE_TRY_AGAIN
                 ,result);
         Password.lockIsHQP();
         Password.unprepareUpdatePassword();
@@ -2042,7 +1939,6 @@ public class LogicTest {
 
         String expected = new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DispatchCommand.MESSAGE_USAGE)).feedbackToUser;
 
-        String expected = new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShutdownCommand.MESSAGE_USAGE)).feedbackToUser;
         expected = expected.substring(expected.indexOf("!") + 1);
         for (String input: inputs) {
             String output = checker.checkDistance(input);
