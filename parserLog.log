@@ -2,6 +2,10 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
+  <date>2018-11-08T11:40:27.982539700Z</date>
+  <millis>1541677227982</millis>
+  <nanos>539700</nanos>
+  <sequence>0</sequence>
   <date>2018-11-05T05:08:56.056839Z</date>
   <millis>1541394536056</millis>
   <nanos>839000</nanos>
@@ -10,6 +14,7 @@
   <level>INFO</level>
   <class>seedu.addressbook.parser.Parser</class>
   <method>parseCommand</method>
+  <thread>1</thread>
   <thread>16</thread>
   <message>Parsed the user input and matching commands.</message>
 </record>

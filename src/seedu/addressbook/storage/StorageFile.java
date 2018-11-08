@@ -2,6 +2,7 @@ package seedu.addressbook.storage;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
 
 import javax.xml.bind.JAXBContext;
@@ -11,6 +12,9 @@ import javax.xml.bind.Unmarshaller;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 
 /**
  * Represents the file used to store address book data.
@@ -126,6 +130,7 @@ public class StorageFile {
 
         // create empty file if not found
         } catch (FileNotFoundException fnfe) {
+            //UniquePersonList data = populatePoliceRecords();
             final AddressBook empty = new AddressBook();
             save(empty);
             return empty;
@@ -142,6 +147,18 @@ public class StorageFile {
 
     public String getPath() {
         return path.toString();
+    }
+
+    public UniquePersonList populatePoliceRecords() throws IllegalValueException {
+        Person person1 = new Person(new Name("John Doe"), new NRIC("s1234567a"), new DateOfBirth("1990"), new PostalCode("111111"), new Status("xc"),
+                new Offense(), Collections.singleton(new Offense("riot")));
+        Person person2 = new Person(new Name("Doe John"), new NRIC("s7654321a"), new DateOfBirth("1976"), new PostalCode("222222"), new Status("xc"),
+                new Offense(), Collections.singleton(new Offense("theft")));
+        Person person3 = new Person(new Name("Syed Harith Zaki"), new NRIC("s9612485j"), new DateOfBirth("1996"), new PostalCode("666666"), new Status("wanted"),
+                new Offense(), Collections.singleton(new Offense("fleeing suspect")));
+        Person person4 = new Person(new Name("Mas Selamat"), new NRIC("g7511111p"), new DateOfBirth("1975"), new PostalCode("507709"), new Status("wanted"),
+                new Offense(), Collections.singleton(new Offense("fleeing suspect")));
+        return new UniquePersonList(person1,person2,person3,person4);
     }
 
 }
