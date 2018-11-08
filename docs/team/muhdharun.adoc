@@ -1,0 +1,47 @@
+= Muhammad Harun - Project Portfolio
+:site-section: AboutUs
+:stylesDir: ../stylesheets
+
+== PROJECT: Police Records and Intelligence System (PRISM)
+
+---
+
+== Overview
+
+The PRISM is an adaptation of the already existing Address-Book 3 (AB3) program by SE EDU. It is a program targeted for Police Officers (PO) and Headquarters Personnel (HQP). Both groups will have varying access and authorization levels to the different features of this system. POs would be able to read from the database after screening a civilian (known as a subject) and decide his next course of action based on the criminal status of the subject. HQPs would have the authority to conduct more thorough checks and remove people from the system if needed.
+
+== Summary of contributions
+
+* *Role*: Developer
+* *Responsibility* : Documentation
+* *Major enhancements*: Morphed parts of the original code base to suit context of PRS. Further details below (Note: Database in the following points refers to text files, as the use of actual databases is prohibited according to CS2113T project requirements):
+**  Removed and added new parameters to the ‘Person’ class such as: ‘NRIC’, ‘Postal Code’, ‘Date of Birth’, ‘Criminal Status’, ‘Past Offences’, etc
+**  Morphed existing commands such as ‘Add’ to handle the updated ‘Person’ class
+**  ‘Find’ and ‘Delete’ commands now search the database using the ‘NRIC’ parameter instead of the ‘Name’ parameter
+*** In addition, ‘Find’ command also stores a timestamp with the corresponding NRIC, and which PO screened the subject, in a separate database
+**  Modified the parser and test cases for the abovementioned commands accordingly
+** Justification:
+*** ‘Person’ class in AB3 had parameters such as email and phone number, which is irrelevant for PRISM, hence new parameters such as NRIC and Date of Birth were added
+***  Finding and Deleting uses NRIC parameter as it is unique, some people may have the same name
+** Highlights: NIL
+** Credits: NIL
+
+* *Minor enhancement*: Added some new commands:
+** *Check (only for HQP)*: Lists down the timestamps during which a subject with the specified NRIC was screened using the ‘Find’ command
+** *Check status of all POs (only for HQP)*: Lists down all POs and their engagement status (whether they are currently attending a case or not)
+** *Update status to free*: Updates the status of the POs to free after finishing the current case
+** *Justifications*:
+*** Important to store timestamps for when person was screened for investigative purposes, in which only HQP would have such authority
+*** HQPs needs to know engagement status for all POs so that they can dispatch a free PO
+*** PO’s status should be manually updated as there is no fixed duration for a case
+
+* *Code contributed*: [https://github.com/CS2113-AY1819S1-F10-3/main/blob/master/collated/functional/muhdharun.md[Functional code]] [https://github.com/CS2113-AY1819S1-F10-3/main/blob/master/collated/test/muhdharun.md[Test code]]
+
+* *Other contributions*:
+
+** Documentation:
+*** Reformatted the User Guide (UG) to make it look neat and organized, like the one used in Address Book 4(AB4)
+*** Updated the UG to include new commands and update existing ones
+*** Added the implementations of the new commands added (such as Find and Check) to the Developer Guide
+** Community:
+*** PRs reviewed
