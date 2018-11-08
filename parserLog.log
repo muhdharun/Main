@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2018-11-08T12:33:15.442742900Z</date>
-  <millis>1541680395442</millis>
-  <nanos>742900</nanos>
+  <date>2018-11-08T13:01:18.673465400Z</date>
+  <millis>1541682078673</millis>
+  <nanos>465400</nanos>
   <sequence>398</sequence>
   <logger>seedu.addressbook.parser.Parser</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Parsed the user input and matching commands.</message>
 </record>
 <record>
-  <date>2018-11-08T12:33:15.443742Z</date>
-  <millis>1541680395443</millis>
-  <nanos>742000</nanos>
+  <date>2018-11-08T13:01:18.673465400Z</date>
+  <millis>1541682078673</millis>
+  <nanos>465400</nanos>
   <sequence>399</sequence>
   <logger>seedu.addressbook.parser.Parser</logger>
   <level>WARNING</level>
@@ -26,9 +26,9 @@
   <message>NRIC does not exist in argument</message>
 </record>
 <record>
-  <date>2018-11-08T12:33:15.443742Z</date>
-  <millis>1541680395443</millis>
-  <nanos>742000</nanos>
+  <date>2018-11-08T13:01:18.674465400Z</date>
+  <millis>1541682078674</millis>
+  <nanos>465400</nanos>
   <sequence>400</sequence>
   <logger>seedu.addressbook.parser.Parser</logger>
   <level>WARNING</level>
