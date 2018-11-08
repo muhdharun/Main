@@ -80,7 +80,7 @@ public class FindCommand extends Command {
                 }
             }
         } else {
-            for (ReadOnlyPerson person : relevantPersons) {
+            for (ReadOnlyPerson person : addressBook.getAllPersons().immutableListView()) {
                 if (person.getNric().getIdentificationNumber().equals(nric)) {
                     addressBook.addPersonToDbAndUpdate(person);
                     addressBook.updateDatabase(SCREENING_DATABASE);
