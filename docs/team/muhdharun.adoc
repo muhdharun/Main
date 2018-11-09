@@ -8,7 +8,7 @@
 
 == Overview
 
-The PRISM is an adaptation of the already existing Address-Book 3 (AB3) program by SE EDU. It is a program targeted for Police Officers (PO) and Headquarters Personnel (HQP). Both groups will have varying access and authorization levels to the different features of this system. POs would be able to read from the database after screening a civilian (known as a subject) and decide his next course of action based on the criminal status of the subject. HQPs would have the authority to conduct more thorough checks and remove people from the system if needed.
+The PRISM is an adaptation of the already existing Address-Book 3 (AB3) program by SE EDU. It is a program targeted for Police Officers (PO) and Headquarters Personnel (HQP) of the Police Force. Both groups will have varying access and authorization levels to the different features of this system. POs would be able to read from the database after screening a civilian (known as a subject) and decide his next course of action based on the criminal status of the subject. HQPs would have the authority to conduct more thorough checks and remove people from the system if needed. This project was developed to enhance the crime handling capabilities of the Police Force
 
 == Summary of contributions
 
