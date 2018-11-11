@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2018-11-11T10:45:27.689150500Z</date>
+  <millis>1541933127689</millis>
+  <nanos>150500</nanos>
+  <sequence>3</sequence>
+  <logger>seedu.addressbook.parser.Parser</logger>
+  <level>INFO</level>
+  <class>seedu.addressbook.parser.Parser</class>
+  <method>parseCommand</method>
+  <thread>19</thread>
+  <message>Parsed the user input and matching commands.</message>
+</record>

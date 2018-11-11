@@ -35,7 +35,7 @@ The PRISM is an adaptation of the already existing Address-Book 3 (AB3) program 
 *** HQPs needs to know engagement status for all POs so that they can dispatch a free PO
 *** PO’s status should be manually updated as there is no fixed duration for a case
 
-* *Code contributed*: [https://github.com/CS2113-AY1819S1-F10-3/main/blob/master/collated/functional/muhdharun.md[Functional code]] [https://github.com/CS2113-AY1819S1-F10-3/main/blob/master/collated/test/muhdharun.md[Test code]]
+* *Code contributed*: [https://nuscs2113-ay1819s1.github.io/dashboard/#=undefined&search=muhdharun[Link to project code dashboard]][https://github.com/CS2113-AY1819S1-F10-3/main/blob/master/collated/functional/muhdharun.md[Functional code]] [https://github.com/CS2113-AY1819S1-F10-3/main/blob/master/collated/test/muhdharun.md[Test code]]
 
 * *Other contributions*:
 
@@ -44,7 +44,7 @@ The PRISM is an adaptation of the already existing Address-Book 3 (AB3) program 
 *** Updated the UG to include new commands and update existing ones
 *** Added the implementations of the new commands added (such as Find and Check) to the Developer Guide
 ** Community:
-*** PRs reviewed : https://github.com/CS2113-AY1819S1-F10-3/main/pull/153[#153], https://github.com/CS2113-AY1819S1-F10-3/main/pull/152[#152], https://github.com/CS2113-AY1819S1-F10-3/main/pull/148[#148], https://github.com/CS2113-AY1819S1-F10-3/main/pull/139[#139]
+*** Examples of PRs reviewed : https://github.com/CS2113-AY1819S1-F10-3/main/pull/153[#153], https://github.com/CS2113-AY1819S1-F10-3/main/pull/152[#152], https://github.com/CS2113-AY1819S1-F10-3/main/pull/148[#148], https://github.com/CS2113-AY1819S1-F10-3/main/pull/139[#139]
 
 == Contributions to the User Guide
 
