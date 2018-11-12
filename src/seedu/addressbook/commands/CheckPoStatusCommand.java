@@ -28,8 +28,8 @@ public class CheckPoStatusCommand extends Command {
 
     /**
      * TODO: Add Javadoc comment
-     * @param pos
-     * @return
+     * @param pos is the ArrayList from PatrolRsourceStatus
+     * @return list of Pos and their isEngaged boolean value
      */
     public static List<String> extractEngagementInformation(ArrayList<Triplet<String, Location, Boolean>> pos) {
         List<String> allPos = new ArrayList<>();

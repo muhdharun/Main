@@ -12,6 +12,7 @@ import java.util.Optional;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.inbox.MessageFilePaths;
 import seedu.addressbook.parser.Parser;
@@ -328,8 +329,6 @@ public class Logic {
         }
     }
 
-    private void populatePoliceRecords() throws IllegalValueException {
 
-    }
 
 }

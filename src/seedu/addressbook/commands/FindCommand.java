@@ -44,6 +44,7 @@ public class FindCommand extends Command {
             this.addressBook = storage.load();
         } catch (Exception e) {
             //TODO: Fix empty catch block
+            //Catch block is empty as this method will only be used for testing, where a different addressbook could be used
         }
     }
 

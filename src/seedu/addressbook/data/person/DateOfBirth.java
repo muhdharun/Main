@@ -43,8 +43,8 @@ public class DateOfBirth {
 
     /**
      * TODO: Add Javadoc comment
-     * @param test
-     * @return
+     * @param test nric
+     * @return true if it is less than current year and more than 1900
      */
     private boolean isValidDateOfBirth(String test) {
         return test.matches(DATE_OF_BIRTH_VALIDATION_REGEX)

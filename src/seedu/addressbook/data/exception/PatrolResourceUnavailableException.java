@@ -2,6 +2,7 @@ package seedu.addressbook.data.exception;
 
 /**
  * TODO: Add Javadoc comment
+ * Signals that a PO is not free for dispatch
  */
 public class PatrolResourceUnavailableException extends Exception {
     /**

@@ -61,6 +61,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * TODO: Add Javadoc comment
+     * Signals that an operation of adding a person would fail because of duplicate persons
      */
     public static class DuplicatePersonException extends DuplicateDataException {
         DuplicatePersonException() {

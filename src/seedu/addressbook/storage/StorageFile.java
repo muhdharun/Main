@@ -16,7 +16,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-<<<<<<< HEAD
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,8 +23,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.*;
-=======
-
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.DateOfBirth;
@@ -37,7 +34,6 @@ import seedu.addressbook.data.person.PostalCode;
 import seedu.addressbook.data.person.Status;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
->>>>>>> 53e2cdda5d120512f624afdc1e3d60c5c2e18b1c
 
 
 /**

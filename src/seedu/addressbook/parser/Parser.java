@@ -417,8 +417,8 @@ public class Parser {
 
     /**
      * TODO: Add Javadoc comment
-     * @param args
-     * @return
+     * @param args full command args string
+     * @return the prepared command
      */
     private Command prepareFind(String args) {
         args = args.trim();

@@ -45,7 +45,7 @@ public class CheckCommand extends Command {
             StorageFile storage = new StorageFile();
             this.addressBook = storage.load();
         } catch (Exception e) {
-            //TODO: Fix empty catch block
+            //Catch block is empty as this method will only be used in testing, where a different addressbook could be needed
         }
     }
 
